@@ -76,7 +76,7 @@ fn getTasks(allocator: std.mem.Allocator, reader: anytype) !std.ArrayList(Task) 
         const trimmed = std.mem.trim(u8, raw, "\r\n \t");
 
         const taskText = try allocator.dupe(u8, trimmed);
-        try content.append(allocator, .{.task = taskText, .done = false});
+        try content.append(allocator, .{.task = taskText});
     }
 
     return content;
@@ -123,7 +123,7 @@ fn viewNotes(arrayList: *std.ArrayList(Task), writer: anytype) !void {
 
 
 fn createNewNote(allocator: std.mem.Allocator, arrayList: *std.ArrayList(Task), writer: anytype, reader: anytype) !void {
-    try arrayList.append(allocator, .{ .task = try getString(allocator, writer, reader), .done = false });
+    try arrayList.append(allocator, .{ .task = try getString(allocator, writer, reader) });
 }
 
 fn deleteNote(allocator: std.mem.Allocator, arrayList: *std.ArrayList(Task), writer: anytype, reader: anytype) !void {
