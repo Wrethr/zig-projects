@@ -6,6 +6,7 @@ pub fn main() !void {
     const allocator = gpa.allocator();
 
     const cwd = try openCurrentDirWithIterablePerm();
+    defer cwd.close(); // из-за openDir внутри
 
     var extensions = std.StringHashMap(usize).init(allocator);
     defer {
