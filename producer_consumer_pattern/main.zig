@@ -1,7 +1,5 @@
 const std = @import("std");
 
-var total_sum: usize = 0;
-
 pub fn main() !void {
     var buffer: [1024]u8 = undefined;
     var fba = std.heap.FixedBufferAllocator.init(&buffer);
